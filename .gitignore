@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+
+memory.json
+conversation_memory.json
+relationship_memory.json
+
+snowy_test.mp3
+test.mp3
+test_voice.wav
+
+.env
+
+.venv/
+venv/
+
+.DS_Store
