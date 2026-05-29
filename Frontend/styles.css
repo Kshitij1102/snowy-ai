@@ -1,0 +1,1128 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:
+    radial-gradient(circle at center,
+    #180000 0%,
+    #090000 40%,
+    #000000 100%);
+
+    overflow:hidden;
+
+    color:#ffd6d6;
+
+    font-family:'Rajdhani',sans-serif;
+
+    height:100vh;
+
+}
+
+/* 🌌 BACKGROUND */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:200%;
+    height:200%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,0,0,0.18) 1px,
+    transparent 1px);
+
+    background-size:45px 45px;
+
+    animation:bgMove 30s linear infinite;
+
+    opacity:0.12;
+
+    pointer-events:none;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+    rgba(255,0,0,0.03) 1px,
+    transparent 1px);
+
+    background-size:100% 4px;
+
+    opacity:0.2;
+
+    pointer-events:none;
+
+}
+
+@keyframes bgMove{
+
+    from{
+        transform:translate(0,0);
+    }
+
+    to{
+        transform:translate(-300px,-300px);
+    }
+
+}
+
+/* 🌐 DASHBOARD */
+
+.dashboard{
+
+    position:relative;
+
+    z-index:2;
+
+    display:grid;
+
+    grid-template-columns:320px 1fr 380px;
+
+    height:100vh;
+
+}
+
+/* 🧊 PANELS */
+
+.panel{
+
+    background:
+    linear-gradient(
+    180deg,
+    rgba(20,0,0,0.55),
+    rgba(5,0,0,0.35));
+
+    border:
+    1px solid rgba(255,0,0,0.08);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+    inset 0 0 40px rgba(255,0,0,0.03),
+    0 0 40px rgba(255,0,0,0.04);
+
+}
+
+/* 📡 LEFT PANEL */
+
+.left-panel{
+
+    padding:30px;
+
+}
+
+.logo{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:58px;
+
+    font-weight:900;
+
+    letter-spacing:10px;
+
+    color:#ff4040;
+
+    text-shadow:
+    0 0 15px #ff0000,
+    0 0 45px #ff0000,
+    0 0 100px rgba(255,0,0,0.45);
+
+}
+
+.subtitle{
+
+    margin-top:12px;
+
+    opacity:0.65;
+
+    letter-spacing:4px;
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    line-height:1.8;
+
+}
+
+.divider{
+
+    width:100%;
+
+    height:1px;
+
+    background:
+    linear-gradient(
+    to right,
+    transparent,
+    rgba(255,0,0,0.4),
+    transparent);
+
+    margin:28px 0;
+
+}
+
+.system-card{
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    border-radius:20px;
+
+    background:
+    rgba(30,0,0,0.4);
+
+    border:
+    1px solid rgba(255,0,0,0.08);
+
+    box-shadow:
+    inset 0 0 15px rgba(255,0,0,0.04);
+
+}
+
+.system-card h3{
+
+    font-size:12px;
+
+    letter-spacing:3px;
+
+    opacity:0.6;
+
+    margin-bottom:10px;
+
+}
+
+.system-card p{
+
+    font-size:20px;
+
+    color:#fff0f0;
+
+}
+
+/* ⚡ CENTER */
+
+.center-panel{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+}
+
+/* 🔥 NEURAL REACTOR */
+
+.hologram-core{
+
+    position:relative;
+
+    width:420px;
+    height:420px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+}
+
+/* 🌌 ENERGY RINGS */
+
+.energy-ring{
+
+    position:absolute;
+
+    border-radius:50%;
+
+    border:
+    1px solid rgba(255,0,0,0.15);
+
+}
+
+.energy-ring1{
+
+    width:220px;
+    height:220px;
+
+    animation:rotate 8s linear infinite;
+
+    box-shadow:
+    0 0 25px rgba(255,0,0,0.35);
+
+}
+
+.energy-ring2{
+
+    width:320px;
+    height:320px;
+
+    border-style:dashed;
+
+    animation:rotateReverse 16s linear infinite;
+
+    opacity:0.7;
+
+}
+
+.energy-ring3{
+
+    width:450px;
+    height:450px;
+
+    opacity:0.25;
+
+    animation:rotate 35s linear infinite;
+
+}
+
+/* 🔺 HEX CORE */
+
+.hex-core{
+
+    position:relative;
+
+    width:180px;
+    height:180px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+}
+
+.hex-layer{
+
+    position:absolute;
+
+    width:160px;
+    height:160px;
+
+    clip-path:
+    polygon(
+    25% 6%,
+    75% 6%,
+    100% 50%,
+    75% 94%,
+    25% 94%,
+    0% 50%
+    );
+
+    border:
+    2px solid rgba(255,0,0,0.55);
+
+    background:
+    rgba(255,0,0,0.03);
+
+    box-shadow:
+    0 0 25px rgba(255,0,0,0.2);
+
+}
+
+.hex1{
+
+    animation:
+    rotate 8s linear infinite;
+
+}
+
+.hex2{
+
+    width:120px;
+    height:120px;
+
+    animation:
+    rotateReverse 5s linear infinite;
+
+}
+
+.hex3{
+
+    width:80px;
+    height:80px;
+
+    animation:
+    rotate 3s linear infinite;
+
+}
+
+/* 🧠 CENTER SYMBOL */
+
+.neural-symbol{
+
+    position:relative;
+
+    width:80px;
+    height:80px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+}
+
+.symbol-line{
+
+    position:absolute;
+
+    background:#ff2a2a;
+
+    box-shadow:
+    0 0 15px #ff0000,
+    0 0 30px rgba(255,0,0,0.7);
+
+}
+
+.line1{
+
+    width:70px;
+    height:2px;
+
+    animation:pulseLine 2s infinite;
+
+}
+
+.line2{
+
+    width:2px;
+    height:70px;
+
+    animation:pulseLine 2s infinite;
+
+}
+
+.line3{
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    border:
+    2px solid rgba(255,0,0,0.6);
+
+    background:none;
+
+    animation:
+    reactorPulse 3s infinite;
+
+}
+
+/* ✨ FLOATING PARTICLES */
+
+.particle{
+
+    position:absolute;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ff3a3a;
+
+    box-shadow:
+    0 0 12px #ff0000,
+    0 0 30px rgba(255,0,0,0.8);
+
+}
+
+.particle1{
+
+    top:20%;
+    left:25%;
+
+    animation:float1 4s infinite ease-in-out;
+
+}
+
+.particle2{
+
+    top:70%;
+    left:20%;
+
+    animation:float2 5s infinite ease-in-out;
+
+}
+
+.particle3{
+
+    top:25%;
+    right:20%;
+
+    animation:float3 6s infinite ease-in-out;
+
+}
+
+.particle4{
+
+    bottom:20%;
+    right:25%;
+
+    animation:float1 7s infinite ease-in-out;
+
+}
+
+/* 🎵 AUDIO WAVE */
+
+.wave-container{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:80px;
+
+    z-index:5;
+
+}
+
+.bar{
+
+    width:7px;
+
+    height:20px;
+
+    border-radius:12px;
+
+    background:#ff1a1a;
+
+    box-shadow:
+    0 0 12px #ff0000,
+    0 0 30px rgba(255,0,0,0.5);
+
+    animation:bounce 1s infinite;
+
+}
+
+.bar:nth-child(2){animation-delay:0.1s;}
+.bar:nth-child(3){animation-delay:0.2s;}
+.bar:nth-child(4){animation-delay:0.3s;}
+.bar:nth-child(5){animation-delay:0.4s;}
+.bar:nth-child(6){animation-delay:0.5s;}
+.bar:nth-child(7){animation-delay:0.6s;}
+.bar:nth-child(8){animation-delay:0.7s;}
+
+/* 🧠 STATUS */
+
+.status{
+
+    margin-top:35px;
+
+    font-size:18px;
+
+    letter-spacing:4px;
+
+    opacity:0.85;
+
+    color:#ff9f9f;
+
+    text-shadow:
+    0 0 10px rgba(255,0,0,0.5);
+
+    min-height:28px;
+
+}
+
+/* 💬 INPUT */
+
+.chat-input-container{
+
+    margin-top:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    z-index:999;
+
+}
+
+#chatInput{
+
+    width:430px;
+
+    padding:17px 22px;
+
+    border-radius:18px;
+
+    border:
+    1px solid rgba(255,0,0,0.2);
+
+    background:
+    rgba(20,0,0,0.65);
+
+    color:#ffd6d6;
+
+    font-size:16px;
+
+    outline:none;
+
+    backdrop-filter:blur(14px);
+
+    box-shadow:
+    0 0 20px rgba(255,0,0,0.08);
+
+}
+
+#chatInput::placeholder{
+
+    color:#ff9a9a;
+
+    opacity:0.45;
+
+}
+
+#chatInput:focus{
+
+    border:
+    1px solid rgba(255,0,0,0.55);
+
+    box-shadow:
+    0 0 30px rgba(255,0,0,0.2);
+
+}
+
+#sendBtn{
+
+    padding:15px 28px;
+
+    border:none;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ff1a1a,
+    #7a0000);
+
+    color:#ffffff;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-weight:700;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 0 25px rgba(255,0,0,0.25);
+
+}
+
+#sendBtn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 0 40px rgba(255,0,0,0.55);
+
+}
+
+.activate-btn{
+
+    margin-top:35px;
+
+    padding:16px 38px;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+    90deg,
+    #ff1a1a,
+    #6a0000);
+
+    color:#fff;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:0.4s;
+
+    box-shadow:
+    0 0 30px rgba(255,0,0,0.35);
+
+}
+
+.activate-btn:hover{
+
+    transform:translateY(-3px) scale(1.03);
+
+    box-shadow:
+    0 0 60px rgba(255,0,0,0.7);
+
+}
+
+.right-panel{
+
+    padding:24px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.logs-title{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:22px;
+
+    letter-spacing:3px;
+
+    margin-bottom:20px;
+
+    color:#ff5555;
+
+}
+
+.log-box{
+
+    flex:1;
+
+    overflow:auto;
+
+    border-radius:22px;
+
+    background:
+    rgba(20,0,0,0.55);
+
+    border:
+    1px solid rgba(255,0,0,0.08);
+
+    padding:18px;
+
+    box-shadow:
+    inset 0 0 25px rgba(255,0,0,0.03);
+
+}
+
+.log{
+
+    margin-bottom:14px;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    border-left:
+    2px solid rgba(255,0,0,0.25);
+
+    padding-left:12px;
+
+    opacity:0.9;
+
+}
+
+.thinking{
+
+    display:inline-flex;
+
+    gap:5px;
+
+    margin-left:8px;
+
+}
+
+.dot{
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#ff3c3c;
+
+    animation:blink 1.2s infinite;
+
+}
+
+.dot:nth-child(2){
+    animation-delay:0.2s;
+}
+
+.dot:nth-child(3){
+    animation-delay:0.4s;
+}
+
+@keyframes rotate{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+@keyframes rotateReverse{
+
+    from{
+        transform:rotate(360deg);
+    }
+
+    to{
+        transform:rotate(0deg);
+    }
+
+}
+
+@keyframes bounce{
+
+    0%,100%{
+        height:18px;
+    }
+
+    50%{
+        height:75px;
+    }
+
+}
+
+@keyframes blink{
+
+    0%,100%{
+        opacity:0.2;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+}
+
+@keyframes reactorPulse{
+
+    0%{
+        transform:scale(1);
+        opacity:0.7;
+    }
+
+    50%{
+        transform:scale(1.2);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:0.7;
+    }
+
+}
+
+@keyframes pulseLine{
+
+    0%,100%{
+        opacity:0.5;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+}
+
+@keyframes float1{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-18px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+@keyframes float2{
+
+    0%{
+        transform:translateX(0px);
+    }
+
+    50%{
+        transform:translateX(18px);
+    }
+
+    100%{
+        transform:translateX(0px);
+    }
+
+}
+
+@keyframes float3{
+
+    0%{
+        transform:
+        translateY(0px)
+        translateX(0px);
+    }
+
+    50%{
+        transform:
+        translateY(-12px)
+        translateX(12px);
+    }
+
+    100%{
+        transform:
+        translateY(0px)
+        translateX(0px);
+    }
+
+}
+
+@media(max-width:1100px){
+
+.dashboard{
+    grid-template-columns:1fr;
+}
+
+.left-panel,
+.right-panel{
+    display:none;
+}
+
+#chatInput{
+    width:260px;
+}
+
+}
+
+/* 🌈 EMOTIONAL VISUAL STATES */
+
+.mood-calm .hologram-core{
+
+    filter:
+    drop-shadow(0 0 25px rgba(255,80,80,0.35));
+
+}
+
+.mood-happy .hologram-core{
+
+    filter:
+    drop-shadow(0 0 45px rgba(255,120,120,0.85));
+
+    animation:
+    reactorPulse 2s infinite;
+
+}
+
+.mood-sad .hologram-core{
+
+    filter:
+    drop-shadow(0 0 18px rgba(120,120,255,0.35));
+
+    opacity:0.8;
+
+}
+
+.mood-focus .hologram-core{
+
+    filter:
+    drop-shadow(0 0 55px rgba(255,40,40,0.95));
+
+}
+
+.mood-system .hologram-core{
+
+    animation:
+    flicker 0.15s infinite;
+
+}
+
+@keyframes flicker{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.4;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+
+/* 🌌 THINKING MODE */
+
+.thinking-active .hologram-core{
+
+    animation:
+    reactorPulse 1.4s infinite;
+
+    filter:
+    drop-shadow(
+    0 0 75px rgba(255,0,0,1)
+    );
+
+}
+
+.thinking-active .energy-ring1{
+
+    animation:
+    rotate 1.8s linear infinite;
+
+}
+
+.thinking-active .energy-ring2{
+
+    animation:
+    rotateReverse 3s linear infinite;
+
+}
+
+.thinking-active .particle{
+
+    transform:scale(1.4);
+
+}
+
+/* 🗣️ SPEAKING REACTOR MODE */
+
+.speaking-active .hologram-core{
+
+    animation:
+    reactorPulse 1.2s infinite;
+
+    filter:
+    drop-shadow(
+    0 0 65px rgba(255,40,40,0.95)
+    );
+
+}
+
+.speaking-active .energy-ring1{
+
+    animation:
+    rotate 2s linear infinite;
+
+}
+
+.speaking-active .energy-ring2{
+
+    animation:
+    rotateReverse 4s linear infinite;
+
+}
+
+.speaking-active .bar{
+
+    animation-duration:0.45s;
+
+}
+
+/* 😴 IDLE BREATHING */
+
+.idle-breathing .hologram-core{
+
+    animation:
+    idleBreathing 5s ease-in-out infinite;
+
+}
+
+@keyframes idleBreathing{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.03);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+/* 🌌 SMOOTH TRANSITIONS */
+
+.hologram-core,
+.energy-ring,
+.bar,
+.particle{
+
+    transition:
+    all 0.45s ease;
+
+}
+
+/* 🌌 CUSTOM SCROLLBAR */
+
+.log-box::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.log-box::-webkit-scrollbar-track{
+
+    background:
+    rgba(20,0,0,0.25);
+
+}
+
+.log-box::-webkit-scrollbar-thumb{
+
+    background:
+    rgba(255,0,0,0.35);
+
+    border-radius:12px;
+
+}
+
+.log-box::-webkit-scrollbar-thumb:hover{
+
+    background:
+    rgba(255,0,0,0.6);
+
+}

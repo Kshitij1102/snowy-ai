@@ -1,0 +1,30 @@
+{
+    "favorite_artist": "ap dhillon",
+    "favorite_food": "Butter Chicken",
+    "hobbies": [
+        "Coding",
+        "Guitar",
+        "AI",
+        "photography"
+    ],
+    "mood_history": [
+        "sad",
+        "happy",
+        "sad",
+        "happy",
+        "chill",
+        "sad",
+        "sad",
+        "sad",
+        "happy",
+        "sad"
+    ],
+    "last_emotion": "sad",
+    "recent_emotions": [
+        "chill",
+        "sad",
+        "sad",
+        "happy",
+        "sad"
+    ]
+}

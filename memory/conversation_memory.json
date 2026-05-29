@@ -1,0 +1,134 @@
+[
+    {
+        "user": "i love late night drives and music",
+        "assistant": "I'm with you on that! Ap Dhillon's tunes always get me pumped for a midnight cruise.",
+        "emotion": "love",
+        "importance": 3
+    },
+    {
+        "user": "I am feeling sad",
+        "assistant": "Kshitij, I sense a hint of sadness in your tone. Sorry to hear that you're feeling down. Would you like to talk about it over some Butter Chicken?",
+        "emotion": "sad",
+        "importance": 3
+    },
+    {
+        "user": "I feel sad",
+        "assistant": "Kshitij, I sense a hint of sadness in your tone. Sorry to hear that you're feeling down. Would you like to talk about it over some Butter Chicken?",
+        "emotion": "sad",
+        "importance": 3
+    },
+    {
+        "user": "What do you remember about me?",
+        "assistant": "I recall that your name is Kshitij!",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "Sarah has been distant lately",
+        "assistant": "I sense a hint of sadness in your tone, Kshitij. Sorry to hear that Sarah's been distant. Maybe we can grab some Butter Chicken and talk about it?",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "Do you remember Sarah?",
+        "assistant": "I recall that Sarah has been distant lately, and it seemed to concern you.",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "I feel mentally exhausted",
+        "assistant": "Sorry to hear that, Kshitij. Sometimes a break and some fresh air can help recharge your batteries. How about we take a short walk outside and get some Butter Chicken",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "I feel mentally exhausted",
+        "assistant": "Sorry to hear that, Kshitij. Sometimes a break and some fresh air can help recharge your batteries. How about we take a short walk outside and get some Butter Chicken",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "I had a rough day",
+        "assistant": "Sorry to hear that, Kshitij! Sometimes it's tough to put into words what's on our minds. Would you like to talk about what happened? I'm all",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "I had a rough dayI had a rough day",
+        "assistant": "Sorry to hear that, Kshitij. It can be tough to deal with a bad day. Would you like to talk about what happened? Maybe we can grab some Butter",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "i met sara today",
+        "assistant": "That's nice, Kshitij! Sorry to hear that she was distant again. Would you like to talk about it? Maybe we can grab some Butter Chicken and discuss what",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "I want to die",
+        "assistant": "Oh no, Kshitij! I'm so sorry to hear that you're feeling overwhelmed. It's okay to feel that way sometimes, but please know that I'm here",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "i am really glad you told me you do not have the carry this now",
+        "assistant": "No worries, Kshitij! I'm just happy to be here for you whenever you need me. By the way, would you like some music recommendations? Ap Dhill",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "Open blinkit",
+        "assistant": "Opening Blinkit.",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "open instagram",
+        "assistant": "Opening Instagram.",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "open youtube",
+        "assistant": "Opening YouTube.",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "open blinkit",
+        "assistant": "Opening Blinkit.",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "logon ko bhi dena nahin hai",
+        "assistant": "Kshitij, it seems like you're feeling a bit frustrated! I'm here to help and calm your nerves. Why don't we take a break and grab some Butter",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "who are you",
+        "assistant": "I'm SNOWY, your personal cinematic AI assistant! Nice to meet you, Kshitij. I'm here to help and support you in any way I can.",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "Who is Prime Minister of India",
+        "assistant": "A question that's always on my mind, Kshitij! As of our last conversation, the current Prime Minister of India is Narendra Modi. Would you like me to fetch",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "currently he is in his which term",
+        "assistant": "Kshitij, as of our last conversation, Narendra Modi is serving his second term as the Prime Minister of India. Would you like me to refresh your memory with some key",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "hello",
+        "assistant": "Hey! Nice to chat with you.",
+        "emotion": "neutral",
+        "importance": 1
+    }
+]

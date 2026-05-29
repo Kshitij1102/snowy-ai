@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snowy AI 🐶</title>
+
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle, #0a0a0a, #000);
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 220px;
+            background: #0d0d0d;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            color: #ff4da6;
+        }
+
+        .menu div {
+            margin: 15px 0;
+            opacity: 0.7;
+            cursor: pointer;
+        }
+
+        .main {
+            flex: 1;
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .title {
+            font-size: 40px;
+            color: #ff4da6;
+        }
+
+        model-viewer {
+            width: 300px;
+            height: 300px;
+            margin-top: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px #ff4da6;
+            transition: 0.3s;
+        }
+
+        .talking {
+            animation: glow 0.4s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { transform: scale(1); box-shadow: 0 0 20px #ff4da6; }
+            to { transform: scale(1.08); box-shadow: 0 0 60px #ff4da6; }
+        }
+
+        #status {
+            margin-top: 10px;
+            opacity: 0.7;
+        }
+
+        .input-box {
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            margin-left: 10px;
+            cursor: pointer;
+            background: #ff4da6;
+            color: white;
+        }
+
+        .wave {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .bar {
+            width: 5px;
+            height: 10px;
+            background: #ff4da6;
+            margin: 2px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%,100% { height: 10px; }
+            50% { height: 30px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>🐾 Snowy</h2>
+        <div class="menu">
+            <div>💬 Chat</div>
+            <div>🧠 Memories</div>
+            <div>🎵 Music</div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="title">Snowy 🐶</div>
+        <p>Your loyal AI companion</p>
+
+        <model-viewer id="dog" src="snowy.glb" auto-rotate camera-controls></model-viewer>
+
+        <p id="status">Snowy is waiting 🐾</p>
+
+        <!-- 🔥 Wave animation -->
+        <div id="wave" class="wave" style="display:none;">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <!-- 🔥 TEXT INPUT -->
+        <div class="input-box">
+            <input id="userInput" placeholder="Talk to Snowy...">
+            <button onclick="sendText()">Send</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+const dog = document.getElementById("dog");
+const status = document.getElementById("status");
+const wave = document.getElementById("wave");
+
+// 🔥 STATE HANDLER
+function setState(state) {
+    if (state === "idle") {
+        status.innerText = "Snowy is waiting 🐾";
+        wave.style.display = "none";
+        dog.classList.remove("talking");
+    }
+
+    if (state === "thinking") {
+        status.innerText = "Snowy is thinking... 🧠";
+    }
+
+    if (state === "speaking") {
+        status.innerText = "Snowy is speaking 🐶";
+        wave.style.display = "flex";
+        dog.classList.add("talking");
+    }
+}
+
+// 🔥 TEXT COMMAND
+function sendText() {
+    const text = document.getElementById("userInput").value;
+    if (!text) return;
+
+    setState("thinking");
+
+    fetch("http://127.0.0.1:5000/command", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ command: text })
+    })
+    .then(res => res.json())
+    .then(data => {
+        speak(data.response);
+    });
+}
+
+// 🔥 FREE VOICE (NO API)
+function speak(text) {
+    setState("speaking");
+
+    const speech = new SpeechSynthesisUtterance(text);
+    speech.rate = 0.95;
+    speech.pitch = 1.2;
+
+    speech.onend = () => {
+        setState("idle");
+    };
+
+    speechSynthesis.speak(speech);
+}
+</script>
+
+</body>
+</html>

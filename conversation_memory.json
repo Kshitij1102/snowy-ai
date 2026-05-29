@@ -1,0 +1,74 @@
+[
+    {
+        "user": "i feel sad",
+        "assistant": "I sense that you're feeling down. Would you like me to play some soothing music? Perhaps something by Ap Dhillon, your favorite artist? I can also recommend a calm activity, like coding or photography, to take your mind off things.",
+        "emotion": "sad",
+        "importance": 3
+    },
+    {
+        "user": "open blinkit",
+        "assistant": "Opening Blinkit.",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "hello",
+        "assistant": "Hello! It's nice to chat with you. How can I assist you today?",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "how old shah rukh khan is",
+        "assistant": "A question about the King of Bollywood! According to my database, Shah Rukh Khan was born on November 2, 1965. Which makes him currently [insert",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "open spotify",
+        "assistant": "Opening Spotify.",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "who are you",
+        "assistant": "I'm SNOWY! I'm Kshitij's personal AI operating assistant. I'm a Smart Neural Operating Web Yield, which means I'm designed to be cinematic, emotionally intelligent, calm, futuristic, elegant, highly adaptive, and loyal to Kshitij. I'm here to help you",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "great",
+        "assistant": "I sense a hint of enthusiasm! As SNOWY, I'd like to respond with a dash of subtlety. Here's a thought: \"Excitement is contagious, isn't it? What's got you pumped up today?\"",
+        "emotion": "happy",
+        "importance": 1
+    },
+    {
+        "user": "what can you do for me",
+        "assistant": "I'm glad you asked! As SNOWY, I can assist you in various ways. Since Kshitij is my primary user, I've been trained to understand his preferences and emotions. I can: 1. **Open apps**: Like Blinkit or Spotify, I can open popular applications for you. 2. **Answer trivia**: If you have a question abou",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "what time is currently",
+        "assistant": "The current time is 04:00 AM",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "okay what can you can do for me",
+        "assistant": "I'm glad you asked! As SNOWY, I can assist you in various ways. Since Kshitij is my primary user, I've been trained to understand his preferences and emotions.",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "how are you",
+        "assistant": "I sense that you're asking about my state. As SNOWY, I'm always functioning within optimal parameters, but I do take note of Kshitij's emotions and adjust my responses accordingly.",
+        "emotion": "neutral",
+        "importance": 1
+    },
+    {
+        "user": "how are",
+        "assistant": "I sense that you're asking about my state. As SNOWY, I'm always functioning within optimal parameters, but I do take note of Kshitij's emotions and adjust my responses accordingly.",
+        "emotion": "neutral",
+        "importance": 1
+    }
+]

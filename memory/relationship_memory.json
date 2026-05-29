@@ -1,0 +1,46 @@
+{
+    "What": {
+        "mentions": 1,
+        "emotion": "neutral"
+    },
+    "Sarah": {
+        "mentions": 1,
+        "emotion": "neutral"
+    },
+    "Sarah?": {
+        "mentions": 1,
+        "emotion": "neutral"
+    },
+    "Open": {
+        "mentions": 1,
+        "emotion": "neutral"
+    },
+    "Hey": {
+        "mentions": 3,
+        "emotion": "neutral"
+    },
+    "Can": {
+        "mentions": 1,
+        "emotion": "neutral"
+    },
+    "Please": {
+        "mentions": 1,
+        "emotion": "neutral"
+    },
+    "Who": {
+        "mentions": 1,
+        "emotion": "neutral"
+    },
+    "Prime": {
+        "mentions": 1,
+        "emotion": "neutral"
+    },
+    "Minister": {
+        "mentions": 1,
+        "emotion": "neutral"
+    },
+    "India": {
+        "mentions": 1,
+        "emotion": "neutral"
+    }
+}
