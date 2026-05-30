@@ -1,0 +1,16 @@
+{
+  "name": "SNOWY AI",
+  "short_name": "SNOWY",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#00ffff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "snowy.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
