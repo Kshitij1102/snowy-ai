@@ -262,7 +262,8 @@ async function sendToBackend(command){
         'THINKING <span class="thinking"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>';
 
         const response = await fetch(
-            "http://127.0.0.1:5000/command",
+            "https://ottawa-blank-induction-porcelain.trycloudflare.com/command",
+
             {
 
                 method:"POST",
