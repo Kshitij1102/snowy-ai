@@ -237,7 +237,7 @@ statusText.innerHTML =
 const response =
 await fetch(
 
-"https://camp-sciences-proceeding-biotechnology.trycloudflare.com/command",
+"https://capable-relying-obvious-wilderness.trycloudflare.com/command",
 
 {
 
