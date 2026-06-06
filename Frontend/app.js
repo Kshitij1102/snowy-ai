@@ -237,7 +237,7 @@ statusText.innerHTML =
 const response =
 await fetch(
 
-"https://capable-relying-obvious-wilderness.trycloudflare.com/command",
+CONFIG.BACKEND_URL + "/command",
 
 {
 
