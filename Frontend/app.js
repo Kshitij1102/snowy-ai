@@ -1,7 +1,7 @@
 window.speechSynthesis.getVoices();
 
 const recognition =
-new(window.SpeechRecognition || window.webkitSpeechRecognition)();
+new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
 recognition.continuous = true;
 recognition.interimResults = false;
@@ -24,516 +24,445 @@ document.getElementById("chatInput");
 const sendBtn =
 document.getElementById("sendBtn");
 
-
-
-/* 📡 LOG SYSTEM */
-
 function addLog(text){
 
-    const log = document.createElement("div");
+const log =
+document.createElement("div");
 
-    log.className = "log";
+log.className =
+"log";
 
-    log.innerHTML =
-    "[" + new Date().toLocaleTimeString() + "] " + text;
+log.innerHTML =
+"[" +
+new Date().toLocaleTimeString() +
+"] " +
+text;
 
-    logs.prepend(log);
+logs.prepend(log);
 
 }
-
-
-
-/* ✨ STREAMING EFFECT */
 
 function streamMessage(text){
 
-    return new Promise((resolve)=>{
+return new Promise((resolve)=>{
 
-        let index = 0;
+let index = 0;
 
-        let output = "";
+let output = "";
 
-        const interval = setInterval(()=>{
+const interval =
+setInterval(()=>{
 
-            if(index < text.length){
+if(index < text.length){
 
-                output += text.charAt(index);
+output +=
+text.charAt(index);
 
-                statusText.innerText = output;
+statusText.innerText =
+output;
 
-                index++;
-
-            }
-
-            else{
-
-                clearInterval(interval);
-
-                resolve();
-
-            }
-
-        },5);
-
-    });
+index++;
 
 }
 
+else{
 
+clearInterval(interval);
 
-/* ⚡ CORE STATES */
+resolve();
+
+}
+
+},5);
+
+});
+
+}
 
 function setState(state){
 
-    statusText.innerText = state;
+statusText.innerText =
+state;
 
-    if(state.includes("LISTENING")){
+if(state.includes("LISTENING")){
 
-        core.style.transform = "scale(1)";
-        core.style.filter = "brightness(1)";
+core.style.transform =
+"scale(1)";
 
-    }
-
-    else if(state.includes("PROCESSING")){
-
-        core.style.transform = "scale(1.08)";
-        core.style.filter = "brightness(1.5)";
-
-    }
-
-    else if(state.includes("SPEAKING")){
-
-        core.style.transform = "scale(1.04)";
-        core.style.filter = "brightness(1.25)";
-
-    }
+core.style.filter =
+"brightness(1)";
 
 }
 
+else if(state.includes("PROCESSING")){
 
+core.style.transform =
+"scale(1.08)";
 
-/* 🌈 MOOD VISUALS */
+core.style.filter =
+"brightness(1.5)";
+
+}
+
+else if(state.includes("SPEAKING")){
+
+core.style.transform =
+"scale(1.04)";
+
+core.style.filter =
+"brightness(1.25)";
+
+}
+
+}
 
 function setMoodVisual(mood){
 
-    const body =
-    document.body;
+const body =
+document.body;
 
-    body.classList.remove(
-        "mood-calm",
-        "mood-happy",
-        "mood-sad",
-        "mood-focus",
-        "mood-system"
-    );
+body.classList.remove(
+"mood-calm",
+"mood-happy",
+"mood-sad",
+"mood-focus",
+"mood-system"
+);
 
-    if(mood === "happy"){
-
-        body.classList.add("mood-happy");
-
-    }
-
-    else if(mood === "sad"){
-
-        body.classList.add("mood-sad");
-
-    }
-
-    else if(mood === "focus"){
-
-        body.classList.add("mood-focus");
-
-    }
-
-    else if(mood === "system"){
-
-        body.classList.add("mood-system");
-
-    }
-
-    else{
-
-        body.classList.add("mood-calm");
-
-    }
+body.classList.add(
+"mood-" +
+(mood || "calm")
+);
 
 }
-
-
-
-/* 🌌 THINKING MODE */
 
 function startThinkingAnimation(){
 
-    document.body.classList.add(
-        "thinking-active"
-    );
+document.body.classList.add(
+"thinking-active"
+);
 
 }
-
-
 
 function stopThinkingAnimation(){
 
-    document.body.classList.remove(
-        "thinking-active"
-    );
+document.body.classList.remove(
+"thinking-active"
+);
 
 }
-
-
-
-/* 😴 IDLE BREATHING */
 
 function startIdleBreathing(){
 
-    document.body.classList.add(
-        "idle-breathing"
-    );
+document.body.classList.add(
+"idle-breathing"
+);
 
 }
-
-
-
-/* 🚀 START SNOWY */
 
 function startSnowy(){
 
-    try{
+try{
 
-        recognition.start();
-
-    }
-
-    catch(error){
-
-        console.log(error);
-
-    }
-
-    addLog("SNOWY activated");
-
-    setState("LISTENING");
-
-    setMoodVisual("calm");
-
-    startIdleBreathing();
-
-    speak(
-        "Welcome back Kshitij. Neural systems are online."
-    );
+recognition.start();
 
 }
 
+catch(e){
 
+console.log(e);
 
-/* 🎙️ VOICE LISTENING */
+}
 
-recognition.onresult = async function(event){
+addLog(
+"SNOWY activated"
+);
 
-    if(isProcessing) return;
+setState(
+"LISTENING"
+);
 
-    const command =
-    event.results[event.results.length - 1][0]
-    .transcript
-    .toLowerCase();
+setMoodVisual(
+"calm"
+);
 
-    addLog("USER: " + command);
+startIdleBreathing();
 
-    isProcessing = true;
+speak(
+"Welcome back Kshitij. Neural systems are online."
+);
 
-    await sendToBackend(command);
+}
+
+recognition.onresult =
+async function(event){
+
+if(isProcessing)
+return;
+
+const command =
+event.results[
+event.results.length - 1
+][0]
+.transcript
+.toLowerCase();
+
+addLog(
+"USER: " +
+command
+);
+
+isProcessing =
+true;
+
+await sendToBackend(
+command
+);
 
 };
-
-
-
-/* 🌐 SEND TO BACKEND */
 
 async function sendToBackend(command){
 
-    try{
+try{
 
-        setState("PROCESSING");
+setState(
+"PROCESSING"
+);
 
-        startThinkingAnimation();
+startThinkingAnimation();
 
-        statusText.innerHTML =
-        'THINKING <span class="thinking"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>';
+statusText.innerHTML =
+'THINKING <span class="thinking"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>';
 
-        const response = await fetch(
-            "https://ottawa-blank-induction-porcelain.trycloudflare.com/command",
+const response =
+await fetch(
 
-            {
+"https://camp-sciences-proceeding-biotechnology.trycloudflare.com/command",
 
-                method:"POST",
+{
 
-                headers:{
-                    "Content-Type":"application/json"
-                },
+method:
+"POST",
 
-                body:JSON.stringify({
-                    command:command
-                })
+headers:{
+"Content-Type":
+"application/json"
+},
 
-            }
-        );
+body:
+JSON.stringify({
 
-        const data = await response.json();
+command:
+command
 
-        stopThinkingAnimation();
-
-        setMoodVisual(data.mood);
-
-        addLog("SNOWY: " + data.response);
-
-        await streamMessage(data.response);
-    console.log("🔊 Speaking:", data.response);
-        speak(data.response);
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        stopThinkingAnimation();
-
-        addLog("ERROR: Backend connection failed");
-
-        setMoodVisual("system");
-
-        speak(
-            "Sir, my neural channels are fluctuating slightly. Attempting recovery."
-        );
-
-        isProcessing = false;
-
-    }
+})
 
 }
 
+);
 
+if(!response.ok){
 
-/* 🗣️ SPEECH ENGINE */
+throw new Error(
+response.status
+);
+
+}
+
+const data =
+await response.json();
+
+stopThinkingAnimation();
+
+setMoodVisual(
+data.mood
+);
+
+addLog(
+"SNOWY: " +
+data.response
+);
+
+await streamMessage(
+data.response
+);
+
+speak(
+data.response
+);
+
+}
+
+catch(error){
+
+console.error(
+error
+);
+
+stopThinkingAnimation();
+
+addLog(
+"ERROR: Backend connection failed"
+);
+
+setMoodVisual(
+"system"
+);
+
+speak(
+"Sir, my neural channels are fluctuating slightly. Attempting recovery."
+);
+
+isProcessing =
+false;
+
+}
+
+}
 
 function speak(text){
-    console.log("🎤 speak() called");
 
-    try{
+try{
 
-        recognition.stop();
-
-    }
-
-    catch(error){
-
-        console.log(error);
-
-    }
-
-    if(window.speechSynthesis.speaking){
-
-        window.speechSynthesis.cancel();
-
-    }
-
-    const speech =
-    new SpeechSynthesisUtterance();
-
-    speech.text = text;
-
-    speech.lang = "en-US";
-
-    const voices =
-    window.speechSynthesis.getVoices();
-
-    const selectedVoice =
-    voices.find(
-        voice =>
-        voice.lang &&
-        voice.lang.includes("en")
-    );
-
-    if(selectedVoice){
-
-        speech.voice = selectedVoice;
-
-    }
-
-    speech.volume = 1;
-
-    speech.rate = 0.92;
-
-    speech.pitch = 0.95;
-
-
-
-    speech.onstart = ()=>{
-
-        document.body.classList.add(
-            "speaking-active"
-        );
-
-        setState("SNOWY SPEAKING");
-
-    };
-
-
-
-    speech.onend = ()=>{
-
-        document.body.classList.remove(
-            "speaking-active"
-        );
-
-        setState("LISTENING");
-
-        isProcessing = false;
-
-        setTimeout(()=>{
-
-            if(!isProcessing){
-
-                try{
-
-                    recognition.start();
-
-                }
-
-                catch(error){
-
-                    console.log(error);
-
-                }
-
-            }
-
-        },2500);
-
-    };
-
-
-
-    speech.onerror = ()=>{
-
-        document.body.classList.remove(
-            "speaking-active"
-        );
-
-        isProcessing = false;
-
-        setState("LISTENING");
-
-    };
-
-
-
-    setTimeout(()=>{
-
-        window.speechSynthesis.speak(speech);
-
-    },250);
+recognition.stop();
 
 }
 
+catch(e){}
 
+window.speechSynthesis.cancel();
 
-/* 💬 TEXT CHAT */
-
-sendBtn.addEventListener(
-    "click",
-    sendTextMessage
+const speech =
+new SpeechSynthesisUtterance(
+text
 );
 
+speech.lang =
+"en-US";
 
+speech.rate =
+0.92;
 
-chatInput.addEventListener(
-    "keypress",
-    function(event){
+speech.pitch =
+0.95;
 
-        if(event.key === "Enter"){
+speech.onstart =
+()=>{
 
-            sendTextMessage();
-
-        }
-
-    }
+document.body.classList.add(
+"speaking-active"
 );
 
-
-
-async function sendTextMessage(){
-
-    const command =
-    chatInput.value.trim();
-
-    if(!command) return;
-
-    addLog("USER: " + command);
-
-    chatInput.value = "";
-
-    isProcessing = true;
-
-    await sendToBackend(command);
-
-}
-
-
-
-/* ❌ RECOGNITION ERRORS */
-
-recognition.onerror = function(event){
-
-    console.log(event.error);
-
-    if(event.error === "no-speech"){
-
-        try{
-
-            recognition.start();
-
-        }
-
-        catch(error){
-
-            console.log(error);
-
-        }
-
-        return;
-
-    }
-
-    if(event.error === "not-allowed"){
-
-        addLog("Microphone permission denied");
-
-        setState("MIC BLOCKED");
-
-        return;
-
-    }
-
-    isProcessing = false;
-
-    setState("LISTENING");
+setState(
+"SNOWY SPEAKING"
+);
 
 };
 
+speech.onend =
+()=>{
 
+document.body.classList.remove(
+"speaking-active"
+);
 
-/* 🌌 STARTUP AMBIENCE */
+setState(
+"LISTENING"
+);
 
-window.onload = ()=>{
+isProcessing =
+false;
 
-    setMoodVisual("calm");
+setTimeout(()=>{
 
-    startIdleBreathing();
+try{
 
-    addLog(
-        "SNOWY neural interface synchronized."
-    );
+recognition.start();
+
+}
+
+catch(e){}
+
+},2500);
+
+};
+
+window.speechSynthesis.speak(
+speech
+);
+
+}
+
+sendBtn.addEventListener(
+"click",
+sendTextMessage
+);
+
+chatInput.addEventListener(
+"keypress",
+(event)=>{
+
+if(
+event.key==="Enter"
+){
+
+sendTextMessage();
+
+}
+
+}
+
+);
+
+async function sendTextMessage(){
+
+const command =
+chatInput.value
+.trim();
+
+if(!command)
+return;
+
+chatInput.value =
+"";
+
+addLog(
+"USER: " +
+command
+);
+
+isProcessing =
+true;
+
+await sendToBackend(
+command
+);
+
+}
+
+recognition.onerror =
+function(){
+
+isProcessing =
+false;
+
+setState(
+"LISTENING"
+);
+
+};
+
+window.onload =
+()=>{
+
+setMoodVisual(
+"calm"
+);
+
+startIdleBreathing();
+
+addLog(
+"SNOWY neural interface synchronized."
+);
 
 };

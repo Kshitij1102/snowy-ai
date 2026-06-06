@@ -857,36 +857,36 @@ Emotional Context:
 
     except Exception as e:
 
-     import traceback
+        import traceback
 
-    print("❌ ERROR:", e)
+        print("❌ ERROR:", e)
 
-    traceback.print_exc()
+        traceback.print_exc()
 
-    system_failures = [
+        system_failures = [
 
-        "Sir... I'm facing an issue from the backend server. Allow me a moment — I'm rebooting my neural drives.",
+            "Sir... I'm facing an issue from the backend server. Allow me a moment — I'm rebooting my neural drives.",
 
-        "I'm experiencing temporary instability in my cognition layer. Restoring systems now.",
+            "I'm experiencing temporary instability in my cognition layer. Restoring systems now.",
 
-        "My neural channels are fluctuating slightly, sir. Attempting recovery.",
+            "My neural channels are fluctuating slightly, sir. Attempting recovery.",
 
-        "Apologies sir... my processing core encountered a temporary disruption. Reinitializing now.",
+            "Apologies sir... my processing core encountered a temporary disruption. Reinitializing now.",
 
-        "I'm detecting instability in my neural matrix. Stabilizing systems now."
+            "I'm detecting instability in my neural matrix. Stabilizing systems now."
 
-    ]
+        ]
 
-    return jsonify({
+        return jsonify({
 
-        "response":
-        random.choice(system_failures),
+            "response":
+            random.choice(system_failures),
 
-        "song": None,
+            "song": None,
 
-        "mood": "system"
+            "mood": "system"
 
-    })
+        })
 
 
 # 🚀 RUN SERVER
