@@ -1,6 +1,6 @@
 const CONFIG = {
 
 BACKEND_URL:
-"https://capable-relying-obvious-wilderness.trycloudflare.com"
+"https://modification-interviews-lovers-tables.trycloudflare.com"
 
 };
