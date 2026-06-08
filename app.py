@@ -667,7 +667,7 @@ def command():
 
             model="llama3:8b-instruct-q4_K_M",
 
-            keep_alive="5m",
+            keep_alive="20m",
 
             messages=[
 
@@ -775,8 +775,11 @@ Emotional Context:
             options={
 
                 "temperature": 0.55,
+                
 
-                "num_predict": 150
+                "num_predict": 60,
+
+                "num_ctx": 2048,
 
             }
 
