@@ -622,36 +622,63 @@ def command():
 
 
         # 🧠 MEMORY CONTEXT
-        memory_context = (
-            build_memory_context()
-        )
+        memory_context = ""
 
-        relevant_memories = (
-            get_relevant_memories(cmd)
-        )
+        if len(cmd.split()) > 4:
 
-        short_memory = (
-            get_short_memory()
-        )
+          memory_context = (
+              build_memory_context()
+          )
+            
+        
 
-        relationship_context = (
-            get_relationship_context()
-        )
+        relevant_memories = ""
 
-        emotion_stats = (
-            analyze_emotions()
-        )
+        if len(cmd.split()) > 4:
 
-        emotional_context = (
-            get_emotional_context()
-        )
+         relevant_memories = (
+             get_relevant_memories(cmd)
+         )
+            
+        
 
-        personality_style = (
-            get_personality_style(
-                mood,
-                emotion_stats
-            )
-        )
+        short_memory = ""
+
+        relationship_context = ""
+
+        emotion_stats = {}
+ 
+        emotional_context = "neutral"
+
+        personality_style = "calm"
+
+
+        if len(cmd.split()) > 4:
+
+           short_memory = (
+             get_short_memory()
+           )
+
+           relationship_context = (
+               get_relationship_context()
+           )
+
+           emotion_stats = (
+               analyze_emotions()
+           )
+
+           emotional_context = (
+               get_emotional_context()
+           )
+
+           personality_style = (
+               get_personality_style(
+                   mood,
+                   emotion_stats
+               )
+           )
+            
+        
 
 
         import time

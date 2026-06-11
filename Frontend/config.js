@@ -1,6 +1,6 @@
 const CONFIG = {
 
 BACKEND_URL:
-"https://dramatically-villa-long-total.trycloudflare.com"
+"https://spears-somerset-attempt-enterprises.trycloudflare.com"
 
 };
