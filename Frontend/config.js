@@ -1,6 +1,6 @@
 const CONFIG = {
 
 BACKEND_URL:
-"https://spears-somerset-attempt-enterprises.trycloudflare.com"
+"https://nyc-collection-runtime-bunny.trycloudflare.com"
 
 };

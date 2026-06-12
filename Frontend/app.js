@@ -1,10 +1,12 @@
+```javascript
 window.speechSynthesis.getVoices();
 
 const recognition =
 new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 
-recognition.continuous = true;
-recognition.interimResults = false;
+recognition.continuous = false;
+recognition.interimResults = true;
+recognition.maxAlternatives = 1;
 recognition.lang = "en-US";
 
 let isProcessing = false;
@@ -24,6 +26,7 @@ document.getElementById("chatInput");
 const sendBtn =
 document.getElementById("sendBtn");
 
+
 function addLog(text){
 
 const log =
@@ -41,6 +44,7 @@ text;
 logs.prepend(log);
 
 }
+
 
 function streamMessage(text){
 
@@ -73,11 +77,12 @@ resolve();
 
 }
 
-},5);
+},2);
 
 });
 
 }
+
 
 function setState(state){
 
@@ -116,12 +121,10 @@ core.style.filter =
 
 }
 
+
 function setMoodVisual(mood){
 
-const body =
-document.body;
-
-body.classList.remove(
+document.body.classList.remove(
 "mood-calm",
 "mood-happy",
 "mood-sad",
@@ -129,12 +132,13 @@ body.classList.remove(
 "mood-system"
 );
 
-body.classList.add(
+document.body.classList.add(
 "mood-" +
 (mood || "calm")
 );
 
 }
+
 
 function startThinkingAnimation(){
 
@@ -144,6 +148,7 @@ document.body.classList.add(
 
 }
 
+
 function stopThinkingAnimation(){
 
 document.body.classList.remove(
@@ -151,6 +156,7 @@ document.body.classList.remove(
 );
 
 }
+
 
 function startIdleBreathing(){
 
@@ -160,7 +166,12 @@ document.body.classList.add(
 
 }
 
+
 function startSnowy(){
+
+if(
+!isProcessing
+){
 
 try{
 
@@ -171,6 +182,8 @@ recognition.start();
 catch(e){
 
 console.log(e);
+
+}
 
 }
 
@@ -194,10 +207,18 @@ speak(
 
 }
 
+
 recognition.onresult =
 async function(event){
 
 if(isProcessing)
+return;
+
+if(
+!event.results[
+event.results.length-1
+].isFinal
+)
 return;
 
 const command =
@@ -221,6 +242,7 @@ command
 
 };
 
+
 async function sendToBackend(command){
 
 try{
@@ -234,6 +256,15 @@ startThinkingAnimation();
 statusText.innerHTML =
 'THINKING <span class="thinking"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>';
 
+const controller =
+new AbortController();
+
+setTimeout(()=>{
+
+controller.abort();
+
+},15000);
+
 const response =
 await fetch(
 
@@ -243,6 +274,9 @@ CONFIG.BACKEND_URL + "/command",
 
 method:
 "POST",
+
+signal:
+controller.signal,
 
 headers:{
 "Content-Type":
@@ -310,7 +344,7 @@ setMoodVisual(
 );
 
 speak(
-"Sir, my neural channels are fluctuating slightly. Attempting recovery."
+"My neural channels are fluctuating slightly. Attempting recovery."
 );
 
 isProcessing =
@@ -319,6 +353,7 @@ false;
 }
 
 }
+
 
 function speak(text){
 
@@ -334,17 +369,21 @@ window.speechSynthesis.cancel();
 
 const speech =
 new SpeechSynthesisUtterance(
-text
+text.substring(0,250)
 );
+
+speech.volume =
+1;
+
+speech.rate =
+0.95;
+
+speech.pitch =
+1;
 
 speech.lang =
 "en-US";
 
-speech.rate =
-0.92;
-
-speech.pitch =
-0.95;
 
 speech.onstart =
 ()=>{
@@ -373,18 +412,6 @@ setState(
 isProcessing =
 false;
 
-setTimeout(()=>{
-
-try{
-
-recognition.start();
-
-}
-
-catch(e){}
-
-},2500);
-
 };
 
 window.speechSynthesis.speak(
@@ -393,10 +420,12 @@ speech
 
 }
 
+
 sendBtn.addEventListener(
 "click",
 sendTextMessage
 );
+
 
 chatInput.addEventListener(
 "keypress",
@@ -411,8 +440,8 @@ sendTextMessage();
 }
 
 }
-
 );
+
 
 async function sendTextMessage(){
 
@@ -440,17 +469,46 @@ command
 
 }
 
-recognition.onerror =
-function(){
 
-isProcessing =
-false;
+recognition.onerror =
+function(event){
+
+console.log(
+"Recognition Error:",
+event.error
+);
 
 setState(
 "LISTENING"
 );
 
+if(
+event.error !==
+"not-allowed"
+){
+
+setTimeout(()=>{
+
+if(
+!isProcessing
+){
+
+try{
+
+recognition.start();
+
+}
+
+catch(e){}
+
+}
+
+},1000);
+
+}
+
 };
+
 
 window.onload =
 ()=>{
@@ -465,4 +523,28 @@ addLog(
 "SNOWY neural interface synchronized."
 );
 
+recognition.onend =
+()=>{
+
+if(
+!isProcessing
+){
+
+setTimeout(()=>{
+
+try{
+
+recognition.start();
+
+}
+
+catch(e){}
+
+},1200);
+
+}
+
 };
+
+};
+```
