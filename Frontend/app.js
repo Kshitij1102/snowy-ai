@@ -1,4 +1,3 @@
-```javascript
 window.speechSynthesis.getVoices();
 
 const recognition =
