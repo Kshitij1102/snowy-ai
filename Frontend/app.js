@@ -1,7 +1,10 @@
 window.speechSynthesis.getVoices();
 
 const recognition =
-new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+new (
+window.SpeechRecognition ||
+window.webkitSpeechRecognition
+)();
 
 recognition.continuous = false;
 recognition.interimResults = true;
@@ -92,7 +95,6 @@ if(state.includes("LISTENING")){
 
 core.style.transform =
 "scale(1)";
-
 core.style.filter =
 "brightness(1)";
 
@@ -102,7 +104,6 @@ else if(state.includes("PROCESSING")){
 
 core.style.transform =
 "scale(1.08)";
-
 core.style.filter =
 "brightness(1.5)";
 
@@ -112,7 +113,6 @@ else if(state.includes("SPEAKING")){
 
 core.style.transform =
 "scale(1.04)";
-
 core.style.filter =
 "brightness(1.25)";
 
@@ -168,9 +168,7 @@ document.body.classList.add(
 
 function startSnowy(){
 
-if(
-!isProcessing
-){
+if(!isProcessing){
 
 try{
 
@@ -186,17 +184,11 @@ console.log(e);
 
 }
 
-addLog(
-"SNOWY activated"
-);
+addLog("SNOWY activated");
 
-setState(
-"LISTENING"
-);
+setState("LISTENING");
 
-setMoodVisual(
-"calm"
-);
+setMoodVisual("calm");
 
 startIdleBreathing();
 
@@ -213,17 +205,18 @@ async function(event){
 if(isProcessing)
 return;
 
-if(
-!event.results[
+const result =
+event.results[
 event.results.length-1
-].isFinal
+];
+
+if(
+!result.isFinal
 )
 return;
 
 const command =
-event.results[
-event.results.length - 1
-][0]
+result[0]
 .transcript
 .toLowerCase();
 
@@ -253,7 +246,7 @@ setState(
 startThinkingAnimation();
 
 statusText.innerHTML =
-'THINKING <span class="thinking"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>';
+"THINKING";
 
 const controller =
 new AbortController();
@@ -267,7 +260,8 @@ controller.abort();
 const response =
 await fetch(
 
-CONFIG.BACKEND_URL + "/command",
+CONFIG.BACKEND_URL +
+"/command",
 
 {
 
@@ -278,14 +272,15 @@ signal:
 controller.signal,
 
 headers:{
+
 "Content-Type":
 "application/json"
+
 },
 
 body:
 JSON.stringify({
 
-command:
 command
 
 })
@@ -294,7 +289,9 @@ command
 
 );
 
-if(!response.ok){
+if(
+!response.ok
+){
 
 throw new Error(
 response.status
@@ -328,9 +325,7 @@ data.response
 
 catch(error){
 
-console.error(
-error
-);
+console.log(error);
 
 stopThinkingAnimation();
 
@@ -340,10 +335,6 @@ addLog(
 
 setMoodVisual(
 "system"
-);
-
-speak(
-"My neural channels are fluctuating slightly. Attempting recovery."
 );
 
 isProcessing =
@@ -368,11 +359,14 @@ window.speechSynthesis.cancel();
 
 const speech =
 new SpeechSynthesisUtterance(
-text.substring(0,250)
+text.substring(
+0,
+250
+)
 );
 
-speech.volume =
-1;
+speech.lang =
+"en-US";
 
 speech.rate =
 0.95;
@@ -380,9 +374,8 @@ speech.rate =
 speech.pitch =
 1;
 
-speech.lang =
-"en-US";
-
+speech.volume =
+1;
 
 speech.onstart =
 ()=>{
@@ -420,35 +413,14 @@ speech
 }
 
 
-sendBtn.addEventListener(
-"click",
-sendTextMessage
-);
-
-
-chatInput.addEventListener(
-"keypress",
-(event)=>{
-
-if(
-event.key==="Enter"
-){
-
-sendTextMessage();
-
-}
-
-}
-);
-
-
 async function sendTextMessage(){
 
 const command =
-chatInput.value
-.trim();
+chatInput.value.trim();
 
-if(!command)
+if(
+!command
+)
 return;
 
 chatInput.value =
@@ -469,42 +441,36 @@ command
 }
 
 
+sendBtn.addEventListener(
+"click",
+sendTextMessage
+);
+
+chatInput.addEventListener(
+"keypress",
+(event)=>{
+
+if(
+event.key==="Enter"
+){
+
+sendTextMessage();
+
+}
+
+}
+);
+
+
 recognition.onerror =
 function(event){
 
 console.log(
-"Recognition Error:",
 event.error
 );
 
-setState(
-"LISTENING"
-);
-
-if(
-event.error !==
-"not-allowed"
-){
-
-setTimeout(()=>{
-
-if(
-!isProcessing
-){
-
-try{
-
-recognition.start();
-
-}
-
-catch(e){}
-
-}
-
-},1000);
-
-}
+isProcessing =
+false;
 
 };
 
@@ -546,4 +512,11 @@ catch(e){}
 };
 
 };
-```
+:::
+
+Then:
+
+```bash
+git add .
+git commit -m "Fix app.js"
+git push
