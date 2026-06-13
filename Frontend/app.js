@@ -1,4 +1,9 @@
+try{
 window.speechSynthesis.getVoices();
+}
+catch(e){
+console.log(e);
+}
 
 const recognition =
 new (
@@ -6,41 +11,31 @@ window.SpeechRecognition ||
 window.webkitSpeechRecognition
 )();
 
-recognition.continuous = false;
-recognition.interimResults = true;
-recognition.maxAlternatives = 1;
-recognition.lang = "en-US";
+recognition.continuous=false;
+recognition.interimResults=true;
+recognition.maxAlternatives=1;
+recognition.lang="en-US";
 
-let isProcessing = false;
+let isProcessing=false;
 
-const statusText =
-document.getElementById("status");
-
-const logs =
-document.getElementById("logs");
-
-const core =
-document.getElementById("core");
-
-const chatInput =
-document.getElementById("chatInput");
-
-const sendBtn =
-document.getElementById("sendBtn");
+const statusText=document.getElementById("status");
+const logs=document.getElementById("logs");
+const core=document.getElementById("core");
+const chatInput=document.getElementById("chatInput");
+const sendBtn=document.getElementById("sendBtn");
 
 
 function addLog(text){
 
-const log =
+const log=
 document.createElement("div");
 
-log.className =
-"log";
+log.className="log";
 
-log.innerHTML =
-"[" +
-new Date().toLocaleTimeString() +
-"] " +
+log.innerHTML=
+"["+
+new Date().toLocaleTimeString()+
+"] "+
 text;
 
 logs.prepend(log);
@@ -50,24 +45,21 @@ logs.prepend(log);
 
 function streamMessage(text){
 
-return new Promise((resolve)=>{
+return new Promise(resolve=>{
 
-let index = 0;
+let i=0;
 
-let output = "";
+statusText.innerHTML="";
 
-const interval =
+const interval=
 setInterval(()=>{
 
-if(index < text.length){
+if(i<text.length){
 
-output +=
-text.charAt(index);
+statusText.innerHTML+=
+text[i];
 
-statusText.innerText =
-output;
-
-index++;
+i++;
 
 }
 
@@ -88,35 +80,8 @@ resolve();
 
 function setState(state){
 
-statusText.innerText =
+statusText.innerHTML=
 state;
-
-if(state.includes("LISTENING")){
-
-core.style.transform =
-"scale(1)";
-core.style.filter =
-"brightness(1)";
-
-}
-
-else if(state.includes("PROCESSING")){
-
-core.style.transform =
-"scale(1.08)";
-core.style.filter =
-"brightness(1.5)";
-
-}
-
-else if(state.includes("SPEAKING")){
-
-core.style.transform =
-"scale(1.04)";
-core.style.filter =
-"brightness(1.25)";
-
-}
 
 }
 
@@ -132,8 +97,7 @@ document.body.classList.remove(
 );
 
 document.body.classList.add(
-"mood-" +
-(mood || "calm")
+"mood-"+(mood||"calm")
 );
 
 }
@@ -168,7 +132,22 @@ document.body.classList.add(
 
 function startSnowy(){
 
-if(!isProcessing){
+if(isProcessing)
+return;
+
+addLog(
+"SNOWY activated"
+);
+
+setMoodVisual(
+"calm"
+);
+
+setState(
+"LISTENING"
+);
+
+startIdleBreathing();
 
 try{
 
@@ -182,16 +161,6 @@ console.log(e);
 
 }
 
-}
-
-addLog("SNOWY activated");
-
-setState("LISTENING");
-
-setMoodVisual("calm");
-
-startIdleBreathing();
-
 speak(
 "Welcome back Kshitij. Neural systems are online."
 );
@@ -199,34 +168,30 @@ speak(
 }
 
 
-recognition.onresult =
-async function(event){
+recognition.onresult=
+async(event)=>{
 
 if(isProcessing)
 return;
 
-const result =
+const result=
 event.results[
 event.results.length-1
 ];
 
-if(
-!result.isFinal
-)
+if(!result.isFinal)
 return;
 
-const command =
+const command=
 result[0]
-.transcript
-.toLowerCase();
+.transcript;
 
 addLog(
-"USER: " +
+"USER: "+
 command
 );
 
-isProcessing =
-true;
+isProcessing=true;
 
 await sendToBackend(
 command
@@ -245,61 +210,38 @@ setState(
 
 startThinkingAnimation();
 
-statusText.innerHTML =
-"THINKING";
-
-const controller =
+const controller=
 new AbortController();
 
-setTimeout(()=>{
+setTimeout(
+()=>controller.abort(),
+15000
+);
 
-controller.abort();
-
-},15000);
-
-const response =
+const response=
 await fetch(
-
-CONFIG.BACKEND_URL +
+CONFIG.BACKEND_URL+
 "/command",
-
 {
-
-method:
-"POST",
+method:"POST",
 
 signal:
 controller.signal,
 
 headers:{
-
 "Content-Type":
 "application/json"
-
 },
 
 body:
 JSON.stringify({
-
 command
-
 })
 
 }
-
 );
 
-if(
-!response.ok
-){
-
-throw new Error(
-response.status
-);
-
-}
-
-const data =
+const data=
 await response.json();
 
 stopThinkingAnimation();
@@ -309,7 +251,7 @@ data.mood
 );
 
 addLog(
-"SNOWY: " +
+"SNOWY: "+
 data.response
 );
 
@@ -323,9 +265,9 @@ data.response
 
 }
 
-catch(error){
+catch(e){
 
-console.log(error);
+console.log(e);
 
 stopThinkingAnimation();
 
@@ -333,12 +275,11 @@ addLog(
 "ERROR: Backend connection failed"
 );
 
-setMoodVisual(
-"system"
+setState(
+"SYSTEM ERROR"
 );
 
-isProcessing =
-false;
+isProcessing=false;
 
 }
 
@@ -347,42 +288,24 @@ false;
 
 function speak(text){
 
-try{
-
-recognition.stop();
-
-}
-
-catch(e){}
-
 window.speechSynthesis.cancel();
 
-const speech =
+const speech=
 new SpeechSynthesisUtterance(
-text.substring(
+text.slice(
 0,
 250
 )
 );
 
-speech.lang =
-"en-US";
+speech.lang="en-US";
 
-speech.rate =
-0.95;
+speech.rate=0.95;
 
-speech.pitch =
-1;
+speech.pitch=1;
 
-speech.volume =
-1;
-
-speech.onstart =
+speech.onstart=
 ()=>{
-
-document.body.classList.add(
-"speaking-active"
-);
 
 setState(
 "SNOWY SPEAKING"
@@ -390,19 +313,14 @@ setState(
 
 };
 
-speech.onend =
+speech.onend=
 ()=>{
-
-document.body.classList.remove(
-"speaking-active"
-);
 
 setState(
 "LISTENING"
 );
 
-isProcessing =
-false;
+isProcessing=false;
 
 };
 
@@ -415,24 +333,20 @@ speech
 
 async function sendTextMessage(){
 
-const command =
+const command=
 chatInput.value.trim();
 
-if(
-!command
-)
+if(!command)
 return;
 
-chatInput.value =
-"";
+chatInput.value="";
 
 addLog(
-"USER: " +
+"USER: "+
 command
 );
 
-isProcessing =
-true;
+isProcessing=true;
 
 await sendToBackend(
 command
@@ -447,11 +361,11 @@ sendTextMessage
 );
 
 chatInput.addEventListener(
-"keypress",
-(event)=>{
+"keydown",
+(e)=>{
 
 if(
-event.key==="Enter"
+e.key==="Enter"
 ){
 
 sendTextMessage();
@@ -462,36 +376,15 @@ sendTextMessage();
 );
 
 
-recognition.onerror =
-function(event){
+recognition.onerror=
+()=>{
 
-console.log(
-event.error
-);
-
-isProcessing =
-false;
+isProcessing=false;
 
 };
 
 
-window.onload =
-()=>{
-
-window.startSnowy =
-startSnowy;
-
-setMoodVisual(
-"calm"
-);
-
-startIdleBreathing();
-
-addLog(
-"SNOWY neural interface synchronized."
-);
-
-recognition.onend =
+recognition.onend=
 ()=>{
 
 if(
@@ -508,18 +401,27 @@ recognition.start();
 
 catch(e){}
 
-},1200);
+},1000);
 
 }
 
 };
 
+
+window.onload=
+()=>{
+
+window.startSnowy=
+startSnowy;
+
+setMoodVisual(
+"calm"
+);
+
+startIdleBreathing();
+
+addLog(
+"SNOWY neural interface synchronized."
+);
+
 };
-:::
-
-Then:
-
-```bash
-git add .
-git commit -m "Fix app.js"
-git push
