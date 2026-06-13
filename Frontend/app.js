@@ -478,6 +478,9 @@ false;
 window.onload =
 ()=>{
 
+window.startSnowy =
+startSnowy;
+
 setMoodVisual(
 "calm"
 );
